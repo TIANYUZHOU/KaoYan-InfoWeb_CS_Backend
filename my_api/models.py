@@ -12,7 +12,7 @@ class UserExtend(models.Model):
     # 关联上系统本身的User表 on_delete级联删除（关联的表中数据一起被删除）
     user = models.OneToOneField(User, related_name='extension', on_delete=models.CASCADE)
     phone = models.CharField('手机号', max_length=64, unique=True)
-    avatar = models.ImageField('头像', upload_to='avatars/%Y/%m/%d',default='avatars/default.jpg')
+    avatar = models.ImageField('头像', upload_to='avatars/%Y/%m/%d', default='avatars/default.jpg')
     addTime = models.DateTimeField('添加时间', auto_now_add=True)
     editTime = models.DateTimeField('编辑时间', auto_now=True)
 
@@ -21,8 +21,8 @@ class UserExtend(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '用户扩展'
-        verbose_name_plural = '用户扩展'
+        verbose_name = '用户扩展表'
+        verbose_name_plural = '用户扩展表'
 
 
 # 当接收到User表.save()运行的信号之后，执行下面函数
@@ -84,9 +84,10 @@ class Major(models.Model):
 class Material(models.Model):
     matName = models.CharField('资料名称', max_length=255)
     file = models.FileField(upload_to='materials/%Y/%m/%d/')
-    user = models.ForeignKey(User, verbose_name='上传用户',  on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, verbose_name='上传用户', on_delete=models.DO_NOTHING)
     school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING)
     uploadTime = models.DateTimeField('上传时间', auto_now_add=True)
+
     # downloadLink = models.TextField('下载链接')  DRF已封装好，不用自己取链接
 
     def __str__(self):
@@ -94,5 +95,19 @@ class Material(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '资料表'
-        verbose_name_plural = '资料表'
+        verbose_name = '用户上传资料表'
+        verbose_name_plural = '用户上传资料表'
+
+
+class Links(models.Model):
+    webTitle = models.CharField('网站标题', max_length=24)
+    url = models.CharField('网址', max_length=255)
+    intro = models.TextField('网站简介', null=True, blank=True)
+
+    def __str__(self):
+        return self.webTitle
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = '友情链接表'
+        verbose_name_plural = '友情链接表'
