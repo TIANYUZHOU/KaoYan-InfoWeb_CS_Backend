@@ -12,6 +12,7 @@ admin.site.index_title = "天宇考研"
 # admin.site.register(School)
 admin.site.register(Major)
 admin.site.register(UserExtend)
+admin.site.register(Material)
 
 
 class SchoolMajoy(admin.StackedInline):
