@@ -44,17 +44,17 @@ class School(models.Model):
     schName = models.CharField('院校名称', max_length=255)
     location = models.CharField('所在地', max_length=255)
     subjection = models.CharField('院校隶属', max_length=255)
-    is_985 = models.BooleanField('985工程', default=0)
-    is_211 = models.BooleanField('211工程', default=0)
-    is_firClassU = models.BooleanField('一流大学', default=0)
-    is_firClassS = models.BooleanField('一流学科', default=0)
-    assessmentCS = models.CharField('计算机学科评估', max_length=8, default='')
-    assessmentEE = models.CharField('软件学科评估', max_length=8, default='')
-    graSchool = models.BooleanField('研究生院')
-    indLine = models.BooleanField('自主划线')
-    annUrl = models.TextField('网报公告', default='')
-    admGuideUrl = models.TextField('招生简章', default='')
-    adMethodUrl = models.TextField('调剂办法', default='')
+    is_985 = models.BooleanField('985工程', default=False)
+    is_211 = models.BooleanField('211工程', default=False)
+    is_firClassU = models.BooleanField('一流大学', default=False)
+    is_firClassS = models.BooleanField('一流学科', default=False)
+    assessmentCS = models.CharField('计算机学科评估', max_length=8, null=True, blank=True, default='')
+    assessmentEE = models.CharField('软件学科评估', max_length=8, null=True, blank=True, default='')
+    graSchool = models.BooleanField('研究生院', default=False)
+    indLine = models.BooleanField('自主划线', default=False)
+    annUrl = models.TextField('网报公告', null=True, blank=True, default='')
+    admGuideUrl = models.TextField('招生简章', null=True, blank=True, default='')
+    adMethodUrl = models.TextField('调剂办法', null=True, blank=True, default='')
 
     def __str__(self):
         return self.schName
@@ -75,7 +75,7 @@ class Major(models.Model):
     examForm = models.CharField('考试方式', max_length=8)
     learnForm = models.CharField('学习方式', max_length=12)
     examScope = models.TextField('考试范围')
-    remark = models.TextField('备注', default='')
+    remark = models.TextField('备注', null=True, blank=True, default='')
 
     def __str__(self):
         return self.major
