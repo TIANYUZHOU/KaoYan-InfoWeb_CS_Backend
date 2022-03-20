@@ -11,7 +11,7 @@ admin.site.index_title = "天宇考研"
 
 # admin.site.register(School)
 admin.site.register(Major)
-admin.site.register(UserExtend)
+# admin.site.register(UserExtend)
 admin.site.register(Material)
 
 
@@ -25,17 +25,17 @@ class SchoolAdmin(admin.ModelAdmin):
     inlines = [SchoolMajoy]
 
 
-class UserUserExtend(admin.StackedInline):
-    model = UserExtend
-    # 额外的表数量（用于新增子表数据）
-    extra = 1
+# class UserUserExtend(admin.StackedInline):
+#     model = UserExtend
+#     # 额外的表数量（用于新增子表数据）
+#     extra = 1
 
-
-class MyUserAdmin(UserAdmin):
-    inlines = [UserUserExtend]
+# class MyUserAdmin(UserAdmin):
+#     inlines = [UserUserExtend]
 
 
 # 后面跟上上面创建的类说明使用
 admin.site.register(School, SchoolAdmin)
-admin.site.unregister(User)
-admin.site.register(User, MyUserAdmin)
+
+# admin.site.unregister(User)
+# admin.site.register(User, MyUserAdmin)

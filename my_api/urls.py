@@ -9,6 +9,7 @@ urlpatterns = [
 
 router = DefaultRouter()  # 创建路由器路由
 # 注册路由
-router.register(r'schools', views.SchoolInfoViewSet)
-router.register(r'materials', views.MaterialViewSet)
+router.register('schools', views.SchoolInfoViewSet)
+router.register('materials', views.MaterialViewSet)
+router.register('majors', views.MajorInfoViewSet)
 urlpatterns += router.urls  # 把生成好饿路由拼接到 urlpatterns

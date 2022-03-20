@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from user.models import User
 
 # Create your models here.
 
@@ -8,35 +9,35 @@ from django.dispatch import receiver
 
 
 # 用户扩展表
-class UserExtend(models.Model):
-    # 关联上系统本身的User表 on_delete级联删除（关联的表中数据一起被删除）
-    user = models.OneToOneField(User, related_name='extension', on_delete=models.CASCADE)
-    phone = models.CharField('手机号', max_length=64, unique=True)
-    avatar = models.ImageField('头像', upload_to='avatars/%Y/%m/%d', default='avatars/default.jpg')
-    addTime = models.DateTimeField('添加时间', auto_now_add=True)
-    editTime = models.DateTimeField('编辑时间', auto_now=True)
+# class UserExtend(models.Model):
+#     # 关联上系统本身的User表 on_delete级联删除（关联的表中数据一起被删除）
+#     user = models.OneToOneField(User, related_name='extension', on_delete=models.CASCADE)
+#     phone = models.CharField('手机号', max_length=64, unique=True)
+#     avatar = models.ImageField('头像', upload_to='avatars/%Y/%m/%d', default='avatars/default.jpg')
+#     addTime = models.DateTimeField('添加时间', auto_now_add=True)
+#     editTime = models.DateTimeField('编辑时间', auto_now=True)
+#
+#     def __str__(self):
+#         return self.user.username
+#
+#     class Meta:
+#         ordering = ['id']
+#         verbose_name = '用户扩展表'
+#         verbose_name_plural = '用户扩展表'
 
-    def __str__(self):
-        return self.user.username
 
-    class Meta:
-        ordering = ['id']
-        verbose_name = '用户扩展表'
-        verbose_name_plural = '用户扩展表'
-
-
-# 当接收到User表.save()运行的信号之后，执行下面函数
-@receiver(post_save, sender=User)
-# instance表示被保存的对象(实例)
-# created 布尔值; True如果创建了新记录（True表示数据创建）
-# 参考https://www.jb51.net/article/164598.htm
-def create_user_extension(instance, created, **kwargs):
-    if created:
-        # 如果第一次创建userextension绑定
-        UserExtend.objects.create(user=instance)
-    else:
-        # 修改user对象，那么也要将extension进行保存
-        instance.extension.save()
+# # 当接收到User表.save()运行的信号之后，执行下面函数
+# @receiver(post_save, sender=User)
+# # instance表示被保存的对象(实例)
+# # created 布尔值; True如果创建了新记录（True表示数据创建）
+# # 参考https://www.jb51.net/article/164598.htm
+# def create_user_extension(instance, created, **kwargs):
+#     if created:
+#         # 如果第一次创建userextension绑定
+#         UserExtend.objects.create(user=instance)
+#     else:
+#         # 修改user对象，那么也要将extension进行保存
+#         instance.extension.save()
 
 
 # 院校表
@@ -106,7 +107,7 @@ class Material(models.Model):
         verbose_name_plural = '用户上传资料表'
 
 
-class Links(models.Model):
+class Link(models.Model):
     webTitle = models.CharField('网站标题', max_length=24)
     url = models.CharField('网址', max_length=255)
     intro = models.TextField('网站简介', null=True, blank=True)
