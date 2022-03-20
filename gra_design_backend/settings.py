@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     "corsheaders",
+    'django_filters',
 
     'my_api.apps.MyApiConfig',  # 添加此行代码
 
@@ -187,5 +188,7 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'anon': '500/second',
         'user': '500/second'
-    }
+    },
+    # 过滤器
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
