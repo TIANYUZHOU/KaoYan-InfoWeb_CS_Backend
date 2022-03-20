@@ -139,7 +139,6 @@ AUTH_PROFILE_MODULE = 'djangoadmin.myadmin.UserExtend'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 # 跨域允许的请求方式，可以使用默认值，默认的请求方式为:
 # from corsheaders.defaults import default_methods
 CORS_ALLOW_METHODS = (
@@ -177,7 +176,16 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',   # 基本认证
+        'rest_framework.authentication.BasicAuthentication',  # 基本认证
         'rest_framework.authentication.SessionAuthentication',  # session认证
-    )
+    ),
+    # 限流配置
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '500/second',
+        'user': '500/second'
+    }
 }
