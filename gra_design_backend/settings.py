@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     "corsheaders",
     'django_filters',
 
-    'my_api.apps.MyApiConfig',  # 添加此行代码
-
+    # 自定义 app
+    'my_api.apps.MyApiConfig',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -194,5 +195,5 @@ REST_FRAMEWORK = {
     # 分页
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 接口文档
-'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
