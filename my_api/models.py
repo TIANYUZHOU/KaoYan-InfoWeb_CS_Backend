@@ -44,11 +44,17 @@ class School(models.Model):
     schName = models.CharField('院校名称', max_length=255)
     location = models.CharField('所在地', max_length=255)
     subjection = models.CharField('院校隶属', max_length=255)
+    is_985 = models.BooleanField('985工程', default=0)
+    is_211 = models.BooleanField('211工程', default=0)
+    is_firClassU = models.BooleanField('一流大学', default=0)
+    is_firClassS = models.BooleanField('一流学科', default=0)
+    assessmentCS = models.CharField('计算机学科评估', max_length=8, default='')
+    assessmentEE = models.CharField('软件学科评估', max_length=8, default='')
     graSchool = models.BooleanField('研究生院')
     indLine = models.BooleanField('自主划线')
-    annUrl = models.TextField('网报公告')
-    admGuideUrl = models.TextField('招生简章')
-    adMethodUrl = models.TextField('调剂办法')
+    annUrl = models.TextField('网报公告', default='')
+    admGuideUrl = models.TextField('招生简章', default='')
+    adMethodUrl = models.TextField('调剂办法', default='')
 
     def __str__(self):
         return self.schName
@@ -69,7 +75,7 @@ class Major(models.Model):
     examForm = models.CharField('考试方式', max_length=8)
     learnForm = models.CharField('学习方式', max_length=12)
     examScope = models.TextField('考试范围')
-    remark = models.TextField('备注')
+    remark = models.TextField('备注', default='')
 
     def __str__(self):
         return self.major
@@ -83,8 +89,9 @@ class Major(models.Model):
 # 资料表
 class Material(models.Model):
     matName = models.CharField('资料名称', max_length=255)
-    file = models.FileField(upload_to='materials/%Y/%m/%d/')
+    file = models.FileField('文件', upload_to='materials/%Y/%m/%d/')
     user = models.ForeignKey(User, verbose_name='上传用户', on_delete=models.DO_NOTHING)
+    downloads = models.IntegerField('下载量', default=0)
     school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING)
     uploadTime = models.DateTimeField('上传时间', auto_now_add=True)
 
