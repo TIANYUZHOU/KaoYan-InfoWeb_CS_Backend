@@ -197,3 +197,6 @@ REST_FRAMEWORK = {
     # 接口文档
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
+
+# 修改 Django 默认用户模型
+AUTH_USER_MODEL = 'user.User'
