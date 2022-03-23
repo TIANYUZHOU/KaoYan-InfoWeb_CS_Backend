@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     """自定义用户模型"""
-    phone = models.CharField('手机号', max_length=24, unique=True)
+    mobile = models.CharField('手机号', max_length=24, unique=True)
     avatar = models.ImageField('头像', upload_to='avatars/%Y/%m/%d', default='avatars/default.jpg')
     editTime = models.DateTimeField('编辑时间', auto_now=True)
 
