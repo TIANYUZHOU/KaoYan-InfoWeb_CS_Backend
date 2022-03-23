@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from django.urls import include
 from rest_framework.documentation import include_docs_urls
 
@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('my_api.urls')),
     path('docs/', include_docs_urls(title='My API title')),
-    path('',include('verification.urls'))   # 发短信
+    re_path(r'^',include('verification.urls')),  # 发短信
+    re_path(r'^',include('user.urls'))
 ]
