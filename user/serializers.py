@@ -32,7 +32,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         """校验验证码"""
         mobile = attrs['mobile']
         real_sms_code = cache.get('sms_%s' % mobile)
-        if real_sms_code is None or attrs['sms_code'] != real_sms_code.decode():
+        if real_sms_code is None or attrs['sms_code'] != real_sms_code:
             raise serializers.ValidationError('验证码错误')
         return attrs
 
