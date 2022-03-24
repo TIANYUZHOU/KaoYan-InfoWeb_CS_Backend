@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import datetime
 import os
 from pathlib import Path
 
@@ -180,6 +181,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',  # JWT
         'rest_framework.authentication.BasicAuthentication',  # 基本认证
         'rest_framework.authentication.SessionAuthentication',  # session认证
     ),
@@ -202,3 +204,8 @@ REST_FRAMEWORK = {
 
 # 修改 Django 默认用户模型
 AUTH_USER_MODEL = 'user.User'
+
+# JWT 配置
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1), # JWT有效期
+}
