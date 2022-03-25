@@ -217,3 +217,7 @@ SIMPLE_JWT = {
     # token刷新后的有效时间
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
 }
+
+# 修改默认认证后端
+AUTHENTICATION_BACKENDS = ['user.utils.UserNameMobileAuthBackend',
+                           ]
