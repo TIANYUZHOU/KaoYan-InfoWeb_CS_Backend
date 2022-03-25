@@ -181,7 +181,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',  # JWT
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',  # JWT
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # 使用rest_framework_simplejwt验证身份
         'rest_framework.authentication.BasicAuthentication',  # 基本认证
         'rest_framework.authentication.SessionAuthentication',  # session认证
     ),
@@ -206,6 +207,13 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'user.User'
 
 # JWT 配置
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1), # JWT有效期
+# JWT_AUTH = {
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # JWT有效期
+# }
+
+SIMPLE_JWT = {
+    # token有效时长
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    # token刷新后的有效时间
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
 }
