@@ -45,7 +45,7 @@ class MobileCountView(APIView):
 
         # 响应数据
         data = {
-            'username': mobile,
+            'mobile': mobile,
             'count': count
         }
 
