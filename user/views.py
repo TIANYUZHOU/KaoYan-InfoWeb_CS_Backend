@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .serializers import CreateUserSerializer
+from .serializers import CreateUserSerializer, UsersProfileSerializer
 from .models import User
 
 from rest_framework import status
@@ -11,6 +12,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenViewBase
 
 from .serializers import MyTokenSerializer
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 
 # Create your views here.
@@ -63,6 +65,18 @@ class LoginView(TokenViewBase):
         try:
             serializer.is_valid(raise_exception=True)
         except Exception as e:
-            raise ValueError(f'验证失败： {e}')
+            # raise ValueError(f'验证失败： {e}')
+            return Response({"error": str(e), "message": "用户名或密码错误"}, status=status.HTTP_200_OK)
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+
+class UsersProfileViewSet(ReadOnlyModelViewSet):
+    # 指定查询集
+    queryset = User.objects.all()
+
+    # 只有登录用户才能访问此视图
+    # permission_classes = [IsAuthenticated]
+
+    # 指定序列化器
+    serializer_class = UsersProfileSerializer

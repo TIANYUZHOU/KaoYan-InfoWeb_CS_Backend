@@ -99,3 +99,15 @@ class MyTokenSerializer(TokenObtainPairSerializer):
         data['username'] = self.user.username
         data['avatar'] = 'http://127.0.0.1:8000/media/' + str(self.user.avatar)
         return data
+
+
+# 用户信息序列化器
+class UsersProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+        extra_kwargs = {  # 修改字段选项
+            'password': {
+                'write_only': True  # 只进行反序列化
+            }
+        }
