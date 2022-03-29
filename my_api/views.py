@@ -59,4 +59,8 @@ class MaterialViewSet(ModelViewSet):
         file_obj = self.get_object()
         # print(file_obj)
         response = FileResponse(open(file_obj.file.path, 'rb'))
+        # print(pk)
+        material_obj = Material.objects.get(id=pk)
+        material_obj.downloads = material_obj.downloads + 1
+        material_obj.save()
         return response

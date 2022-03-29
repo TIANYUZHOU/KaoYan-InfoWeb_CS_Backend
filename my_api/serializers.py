@@ -23,5 +23,8 @@ class MaterialSerializer(serializers.ModelSerializer):
         extra_kwargs = {  # 修改字段选项
             'downloads': {
                 'read_only': True  # 只进行反序列化
+            },
+            'file': {
+                'write_only': True  # 只进行反序列化
             }
         }
