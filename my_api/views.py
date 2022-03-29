@@ -51,6 +51,19 @@ class MaterialViewSet(ModelViewSet):
     # 允许过滤（搜索）的字段
     filter_fields = ['id', 'matName', 'user', 'school']
 
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        print(request.data['school'])
+        school_obj_list = School.objects.filter(schName=request.data['school'])
+        data['school'] = school_obj_list[0].id
+        print(data)
+
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
     # 分页
     pagination_class = LargeResultsSetPagination
 
