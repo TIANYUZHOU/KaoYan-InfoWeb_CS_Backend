@@ -1498,7 +1498,7 @@ model</ColNames>
       <DataType>datetime(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="421" parent="307" name="phone">
+    <column id="421" parent="307" name="mobile">
       <Position>12</Position>
       <DataType>varchar(24)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1519,7 +1519,7 @@ model</ColNames>
       <Type>btree</Type>
     </index>
     <index id="425" parent="307" name="phone">
-      <ColNames>phone</ColNames>
+      <ColNames>mobile</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
@@ -1533,7 +1533,7 @@ model</ColNames>
       <UnderlyingIndexName>username</UnderlyingIndexName>
     </key>
     <key id="428" parent="307" name="phone">
-      <ColNames>phone</ColNames>
+      <ColNames>mobile</ColNames>
       <UnderlyingIndexName>phone</UnderlyingIndexName>
     </key>
     <column id="429" parent="308" name="id">

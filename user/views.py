@@ -5,14 +5,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import CreateUserSerializer, UsersProfileSerializer
+from .serializers import MyTokenSerializer,UserInfoModifySerializer
 from .models import User
 
-from rest_framework import status
+from rest_framework import status, mixins
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenViewBase
 
-from .serializers import MyTokenSerializer
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 
 
 # Create your views here.
@@ -71,7 +71,10 @@ class LoginView(TokenViewBase):
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
-class UsersProfileViewSet(ReadOnlyModelViewSet):
+# 用户信息查询
+class UsersProfileViewSet(mixins.RetrieveModelMixin,
+                          GenericViewSet):
+    """用户信息查询"""
     # 指定查询集
     queryset = User.objects.all()
 
@@ -80,3 +83,12 @@ class UsersProfileViewSet(ReadOnlyModelViewSet):
 
     # 指定序列化器
     serializer_class = UsersProfileSerializer
+
+
+# 用户信息修改
+
+class UserInfoUpdateViewSet(GenericViewSet, mixins.UpdateModelMixin):
+    """用户信息修改"""
+    queryset = User.objects.all()
+    # 指定序列化器
+    serializer_class = UserInfoModifySerializer

@@ -16,4 +16,5 @@ urlpatterns = [
 
 router = DefaultRouter()  # 创建路由器路由
 router.register('userprofile', views.UsersProfileViewSet)
+router.register('usermodify', views.UserInfoUpdateViewSet)
 urlpatterns += router.urls

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import status
 from rest_framework.decorators import action
 from django.http import FileResponse
 
@@ -8,6 +9,7 @@ from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 
 
 # Create your views here.
@@ -41,7 +43,7 @@ class MaterialViewSet(ModelViewSet):
     serializer_class = MaterialSerializer
 
     # 只有登录用户才能访问此视图
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     # 指定过滤字段为排序过滤
     filter_backends = [OrderingFilter]

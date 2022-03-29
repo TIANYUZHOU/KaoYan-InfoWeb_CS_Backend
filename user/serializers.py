@@ -111,3 +111,11 @@ class UsersProfileSerializer(serializers.ModelSerializer):
                 'write_only': True  # 只进行反序列化
             }
         }
+
+
+# 修改用户信息序列化器
+class UserInfoModifySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username','email','mobile','avatar']
+

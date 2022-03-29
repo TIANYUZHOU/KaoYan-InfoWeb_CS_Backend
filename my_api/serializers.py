@@ -20,3 +20,8 @@ class MaterialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Material
         fields = '__all__'
+        extra_kwargs = {  # 修改字段选项
+            'downloads': {
+                'read_only': True  # 只进行反序列化
+            }
+        }
