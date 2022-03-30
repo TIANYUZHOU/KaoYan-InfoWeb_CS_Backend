@@ -53,11 +53,14 @@ class MaterialViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data
-        print(request.data['school'])
-        school_obj_list = School.objects.filter(schName=request.data['school'])
-        data['school'] = school_obj_list[0].id
-        print(data)
-
+        # print(request.data['school'])
+        try:
+            school_obj_list = School.objects.filter(schName=request.data['school'])
+            if len(school_obj_list) != 0:
+                data['school'] = school_obj_list[0].id
+        # print(data)
+        except BaseException as e :
+            print(e)
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
