@@ -89,12 +89,35 @@ class Major(models.Model):
 
 # 资料表
 class Material(models.Model):
+    MATH = 'MATH'
+    ENGLISH = 'EN'
+    POLITICS = 'POL'
+    FZE = '408'
+    DATA_STRUCTURE = 'DS'
+    OPERATING_SYSTEM = 'OS'
+    COMPUTER_NETWORK = 'CN'
+    COMPUTER_ORGANIZATION = 'CO'
+    ELSE = 'ELSE'
+    CLASSIFICATION_IN_MATERIAL_CHOICES = [
+        (MATH, '数学'),
+        (ENGLISH, '英语'),
+        (POLITICS, '政治'),
+        (FZE, '408'),
+        (DATA_STRUCTURE, '数据结构'),
+        (OPERATING_SYSTEM, '操作系统'),
+        (COMPUTER_NETWORK, '计算机网络'),
+        (COMPUTER_ORGANIZATION, '计算机组成原理'),
+        (ELSE, '其他'),
+    ]
+
     matName = models.CharField('资料名称', max_length=255)
     file = models.FileField('文件', upload_to='materials/%Y/%m/%d/')
+    fileSize = models.CharField('文件大小', max_length=255, blank=True, null=True)
     user = models.ForeignKey(User, verbose_name='上传用户', on_delete=models.DO_NOTHING)
     downloads = models.IntegerField('下载量', default=0)
     school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING)
     uploadTime = models.DateTimeField('上传时间', auto_now_add=True)
+    matClass = models.CharField('资料分类', max_length=8, choices=CLASSIFICATION_IN_MATERIAL_CHOICES, default=ELSE)
 
     # downloadLink = models.TextField('下载链接')  DRF已封装好，不用自己取链接
 

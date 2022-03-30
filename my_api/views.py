@@ -49,7 +49,7 @@ class MaterialViewSet(ModelViewSet):
     filter_backends = [OrderingFilter]
 
     # 允许过滤（搜索）的字段
-    filter_fields = ['id', 'matName', 'user', 'school']
+    filter_fields = ['id', 'matName', 'user', 'school','matClass']
 
     def create(self, request, *args, **kwargs):
         data = request.data
