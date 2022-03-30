@@ -92,21 +92,25 @@ class Material(models.Model):
     MATH = 'MATH'
     ENGLISH = 'EN'
     POLITICS = 'POL'
+    PUBLIC_COURSE_COMBINATION = 'PUCC'
     FZE = '408'
     DATA_STRUCTURE = 'DS'
     OPERATING_SYSTEM = 'OS'
     COMPUTER_NETWORK = 'CN'
     COMPUTER_ORGANIZATION = 'CO'
+    PROFESSIONAL_COURSE_COMBINATION = 'PRCC'
     ELSE = 'ELSE'
     CLASSIFICATION_IN_MATERIAL_CHOICES = [
         (MATH, '数学'),
         (ENGLISH, '英语'),
         (POLITICS, '政治'),
+        (PUBLIC_COURSE_COMBINATION, '公共课资料组合'),
         (FZE, '408'),
         (DATA_STRUCTURE, '数据结构'),
         (OPERATING_SYSTEM, '操作系统'),
         (COMPUTER_NETWORK, '计算机网络'),
         (COMPUTER_ORGANIZATION, '计算机组成原理'),
+        (PROFESSIONAL_COURSE_COMBINATION, '专业课资料组合'),
         (ELSE, '其他'),
     ]
 
@@ -118,6 +122,7 @@ class Material(models.Model):
     school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING)
     uploadTime = models.DateTimeField('上传时间', auto_now_add=True)
     matClass = models.CharField('资料分类', max_length=8, choices=CLASSIFICATION_IN_MATERIAL_CHOICES, default=ELSE)
+    description = models.TextField('资料描述', default='快下载来看看~')
 
     # downloadLink = models.TextField('下载链接')  DRF已封装好，不用自己取链接
 
