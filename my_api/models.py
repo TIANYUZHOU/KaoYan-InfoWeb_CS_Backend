@@ -117,9 +117,10 @@ class Material(models.Model):
     matName = models.CharField('资料名称', max_length=255)
     file = models.FileField('文件', upload_to='materials/%Y/%m/%d/')
     fileSize = models.CharField('文件大小', max_length=255, blank=True, null=True)
-    user = models.ForeignKey(User, verbose_name='上传用户', on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, verbose_name='上传用户', on_delete=models.DO_NOTHING, related_name='matUser')
     downloads = models.IntegerField('下载量', default=0)
-    school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING)
+    school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING,
+                               related_name='matSchool')
     uploadTime = models.DateTimeField('上传时间', auto_now_add=True)
     matClass = models.CharField('资料分类', max_length=8, choices=CLASSIFICATION_IN_MATERIAL_CHOICES, default=ELSE)
     description = models.TextField('资料描述', default='快下载来看看~')

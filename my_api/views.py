@@ -5,7 +5,7 @@ from django.http import FileResponse
 
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from .models import School, Major, Material
-from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer
+from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer, MaterialInfoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
@@ -19,7 +19,7 @@ class LargeResultsSetPagination(PageNumberPagination):
     page_size = 1000  # 默认每页显示多少条
     page_query_param = 'page'  # 请求第 n 页时的关键字
     page_size_query_param = 'page_size'  # 请求每页条数的关键字
-    max_page_size = 10000 # 最大每页请求条数
+    max_page_size = 10000  # 最大每页请求条数
 
 
 class SchoolInfoViewSet(ReadOnlyModelViewSet):
@@ -38,6 +38,13 @@ class MajorInfoViewSet(ReadOnlyModelViewSet):
     serializer_class = MajorSerializer
 
 
+# 资料查询视图
+class MaterialInfoViewSet(ReadOnlyModelViewSet):
+    queryset = Material.objects.all()
+    serializer_class = MaterialInfoSerializer
+
+
+# 资料上传视图（也有查询功能）
 class MaterialViewSet(ModelViewSet):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
@@ -49,7 +56,7 @@ class MaterialViewSet(ModelViewSet):
     filter_backends = [OrderingFilter]
 
     # 允许过滤（搜索）的字段
-    filter_fields = ['id', 'matName', 'user', 'school','matClass']
+    filter_fields = ['id', 'matName', 'user', 'school', 'matClass']
 
     def create(self, request, *args, **kwargs):
         data = request.data
@@ -59,7 +66,7 @@ class MaterialViewSet(ModelViewSet):
             if len(school_obj_list) != 0:
                 data['school'] = school_obj_list[0].id
         # print(data)
-        except BaseException as e :
+        except BaseException as e:
             print(e)
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
