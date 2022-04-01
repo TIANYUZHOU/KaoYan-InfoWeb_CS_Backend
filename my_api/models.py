@@ -104,13 +104,13 @@ class Material(models.Model):
         (MATH, '数学'),
         (ENGLISH, '英语'),
         (POLITICS, '政治'),
-        (PUBLIC_COURSE_COMBINATION, '公共课资料组合'),
+        (PUBLIC_COURSE_COMBINATION, '公共课资料'),
         (FZE, '408'),
         (DATA_STRUCTURE, '数据结构'),
         (OPERATING_SYSTEM, '操作系统'),
         (COMPUTER_NETWORK, '计算机网络'),
         (COMPUTER_ORGANIZATION, '计算机组成原理'),
-        (PROFESSIONAL_COURSE_COMBINATION, '专业课资料组合'),
+        (PROFESSIONAL_COURSE_COMBINATION, '专业课资料'),
         (ELSE, '其他'),
     ]
 
