@@ -1,4 +1,6 @@
+import django_filters
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from rest_framework import status
 from rest_framework.decorators import action
 from django.http import FileResponse
@@ -7,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from .models import School, Major, Material
 from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer, MaterialInfoSerializer
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
@@ -42,6 +44,30 @@ class MajorInfoViewSet(ReadOnlyModelViewSet):
 class MaterialInfoViewSet(ReadOnlyModelViewSet):
     queryset = Material.objects.all()
     serializer_class = MaterialInfoSerializer
+
+    # 过滤器
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
+    filter_fields = ['id', 'matName', 'user', 'school', 'matClass']
+
+    # 搜索字段 ?search=
+    # 双下划线访问外键
+    search_fields = ('school__schName', 'matName')
+
+    # 分页
+    pagination_class = LargeResultsSetPagination
+
+    # 列表视图
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 # 资料上传视图（也有查询功能）
