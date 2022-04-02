@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from my_api.serializers import MaterialInfoSerializer
 from .models import User
 from django.core.cache import cache
 from django.contrib.auth import get_user_model
@@ -103,6 +104,8 @@ class MyTokenSerializer(TokenObtainPairSerializer):
 
 # 用户信息序列化器
 class UsersProfileSerializer(serializers.ModelSerializer):
+    matUser = MaterialInfoSerializer(many=True)
+
     class Meta:
         model = User
         fields = '__all__'
