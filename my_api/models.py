@@ -56,6 +56,7 @@ class School(models.Model):
     annUrl = models.TextField('网报公告', null=True, blank=True, default='')
     admGuideUrl = models.TextField('招生简章', null=True, blank=True, default='')
     adMethodUrl = models.TextField('调剂办法', null=True, blank=True, default='')
+    proCourseCount = models.CharField('专业课考试门数', max_length=18, default='408')
 
     def __str__(self):
         return self.schName
@@ -72,6 +73,7 @@ class Major(models.Model):
     major = models.CharField('专业', max_length=255)
     resDirection = models.CharField('研究方向', max_length=255)
     institute = models.CharField('院系所', max_length=255)
+    # institute = models.ForeignKey('Institute',verbose_name='院系所',on_delete=models.DO_NOTHING)
     enrPlan = models.CharField('招生计划', max_length=255)
     examForm = models.CharField('考试方式', max_length=8)
     learnForm = models.CharField('学习方式', max_length=12)
@@ -136,6 +138,7 @@ class Material(models.Model):
         verbose_name_plural = '用户上传资料表'
 
 
+# 友情链接表
 class Link(models.Model):
     webTitle = models.CharField('网站标题', max_length=24)
     url = models.CharField('网址', max_length=255)
@@ -148,3 +151,38 @@ class Link(models.Model):
         ordering = ['id']
         verbose_name = '友情链接表'
         verbose_name_plural = '友情链接表'
+
+# 二级学院表
+# class Institute(models.Model):
+#     insName = models.CharField('院系所', max_length=255)
+#     MATH1 = 'MATH1'
+#     MATH2 = 'MATH2'
+#     MATH3 = 'MATH3'
+#     ENGLISH1 = 'EN1'
+#     ENGLISH2 = 'EN2'
+#     PRO_COURSE_COUNT1 = '1'
+#     PRO_COURSE_COUNT2 = '2'
+#     PRO_COURSE_COUNT3 = '3'
+#     PRO_COURSE_COUNT4 = '4'
+#     PRO_COURSE_COUNT5 = '408'
+#     SUBJECT_IN_MATH_CHOICES = [
+#         (MATH1, '数学一'),
+#         (MATH2, '数学二'),
+#         (MATH3, '数学三')
+#     ]
+#     SUBJECT_IN_ENGLISH_CHOICES = [
+#         (ENGLISH1, '英语一'),
+#         (ENGLISH2, '英语二'),
+#     ]
+#     SUBJECT_IN_PRO_COURSE_COUNT_CHOICES = [
+#         (PRO_COURSE_COUNT1, '1门'),
+#         (PRO_COURSE_COUNT2, '2门'),
+#         (PRO_COURSE_COUNT3, '3门'),
+#         (PRO_COURSE_COUNT4, '4门')
+#     ]
+#     school = models.ForeignKey('School', verbose_name='所属学校', null=True, on_delete=models.DO_NOTHING,
+#                                related_name='secSchool')
+#     math = models.CharField('数学', max_length=8, default=MATH1)
+#     english = models.CharField('英语科目选择', max_length=8, choices=SUBJECT_IN_ENGLISH_CHOICES, default=ENGLISH1)
+#     proCourseCount = models.CharField('专业课科目选择', max_length=8, choices=SUBJECT_IN_PRO_COURSE_COUNT_CHOICES,
+#                                       default=PRO_COURSE_COUNT5)
