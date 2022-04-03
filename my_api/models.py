@@ -49,6 +49,7 @@ class School(models.Model):
     is_211 = models.BooleanField('211工程', default=False)
     is_firClassU = models.BooleanField('一流大学', default=False)
     is_firClassS = models.BooleanField('一流学科', default=False)
+    is_else = models.BooleanField('四非', default=False)
     assessmentCS = models.CharField('计算机学科评估', max_length=8, null=True, blank=True, default='')
     assessmentEE = models.CharField('软件学科评估', max_length=8, null=True, blank=True, default='')
     graSchool = models.BooleanField('研究生院', default=False)
