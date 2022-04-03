@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from .filters import ProCourseCountFilter
 
 
 # Create your views here.
@@ -30,6 +31,13 @@ class SchoolInfoViewSet(ReadOnlyModelViewSet):
 
     # 指定序列化器
     serializer_class = SchoolSerializer
+
+    # 过滤器
+    filter_backends = (DjangoFilterBackend, ProCourseCountFilter)
+    # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
+    filter_fields = ['id', 'schName', 'location', 'subjection',
+                     'is_985', 'is_211', 'is_firClassU', 'is_firClassS','is_else']
+    # search_fields = ['proCourseCount',]
 
 
 class MajorInfoViewSet(ReadOnlyModelViewSet):
