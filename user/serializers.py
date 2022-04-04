@@ -120,5 +120,5 @@ class UsersProfileSerializer(serializers.ModelSerializer):
 class UserInfoModifySerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','email','mobile','avatar']
+        fields = ['username','email','mobile','avatar','signature']
 
