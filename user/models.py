@@ -9,6 +9,7 @@ class User(AbstractUser):
     mobile = models.CharField('手机号', max_length=24, unique=True)
     avatar = models.ImageField('头像', upload_to='avatars/%Y/%m/%d', default='avatars/default.jpg')
     editTime = models.DateTimeField('编辑时间', auto_now=True)
+    signature = models.TextField('签名', default='来填写个签名先~')
 
     class Meta:
         # db_table = 'user_users'   # 数据库表名

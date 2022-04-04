@@ -51,13 +51,13 @@ class School(models.Model):
     is_firClassS = models.BooleanField('一流学科', default=False)
     is_else = models.BooleanField('四非', default=False)
     assessmentCS = models.CharField('计算机学科评估', max_length=8, null=True, blank=True, default='')
-    assessmentEE = models.CharField('软件学科评估', max_length=8, null=True, blank=True, default='')
+    assessmentSE = models.CharField('软件学科评估', max_length=8, null=True, blank=True, default='')
     graSchool = models.BooleanField('研究生院', default=False)
     indLine = models.BooleanField('自主划线', default=False)
     annUrl = models.TextField('网报公告', null=True, blank=True, default='')
     admGuideUrl = models.TextField('招生简章', null=True, blank=True, default='')
     adMethodUrl = models.TextField('调剂办法', null=True, blank=True, default='')
-    proCourseCount = models.CharField('专业课考试门数', max_length=18, default='408')
+    proCourseCount = models.CharField('专业课考试门数', max_length=18, default='四零八')
 
     def __str__(self):
         return self.schName
