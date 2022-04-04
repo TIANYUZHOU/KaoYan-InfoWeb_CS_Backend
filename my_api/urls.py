@@ -13,4 +13,5 @@ router.register('schools', views.SchoolInfoViewSet)
 router.register('materials', views.MaterialViewSet)
 router.register('majors', views.MajorInfoViewSet)
 router.register('materialInfo', views.MaterialInfoViewSet)
+router.register('collect', views.CollectViewSet)
 urlpatterns += router.urls  # 把生成好的路由拼接到 urlpatterns

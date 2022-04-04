@@ -153,6 +153,18 @@ class Link(models.Model):
         verbose_name = '友情链接表'
         verbose_name_plural = '友情链接表'
 
+
+class Collect(models.Model):
+    user = models.OneToOneField(User, verbose_name='收藏用户', on_delete=models.DO_NOTHING, related_name='colUser')
+    school = models.ManyToManyField('School', null=True, blank=True, verbose_name='院校名称', related_name='colSchool')
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = '用户收藏表'
+        verbose_name_plural = '用户收藏表'
 # 二级学院表
 # class Institute(models.Model):
 #     insName = models.CharField('院系所', max_length=255)

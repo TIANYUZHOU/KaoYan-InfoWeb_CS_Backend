@@ -1,13 +1,14 @@
 import django_filters
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
-from rest_framework import status
+from rest_framework import status, mixins
 from rest_framework.decorators import action
 from django.http import FileResponse
 
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
-from .models import School, Major, Material
-from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer, MaterialInfoSerializer
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, GenericViewSet
+from .models import School, Major, Material, Collect
+from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer, MaterialInfoSerializer, \
+    CollectSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.pagination import PageNumberPagination
@@ -47,7 +48,7 @@ class MajorInfoViewSet(ReadOnlyModelViewSet):
     # 指定序列化器
     serializer_class = MajorSerializer
 
-    filter_backends = (DjangoFilterBackend,SearchFilter)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
     # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
     filter_fields = ['id', 'school__schName', 'school__location', 'learnForm']
 
@@ -127,3 +128,15 @@ class MaterialViewSet(ModelViewSet):
         material_obj.downloads = material_obj.downloads + 1
         material_obj.save()
         return response
+
+
+# 用户收藏
+
+class CollectViewSet(GenericViewSet,
+                     mixins.RetrieveModelMixin,
+                     mixins.CreateModelMixin,
+                     mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,mixins.ListModelMixin):
+    """用户收藏"""
+    queryset = Collect.objects.all()
+    serializer_class = CollectSerializer

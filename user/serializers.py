@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
-from my_api.serializers import MaterialInfoSerializer
+from my_api.serializers import MaterialInfoSerializer, InfoCollectSerializer
 from .models import User
+from  my_api.models import Collect
 from django.core.cache import cache
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
@@ -99,12 +100,21 @@ class MyTokenSerializer(TokenObtainPairSerializer):
         data['user_id'] = self.user.id
         data['username'] = self.user.username
         data['avatar'] = 'http://127.0.0.1:8000/media/' + str(self.user.avatar)
+        # 查询出收藏夹id
+        collect_obj = Collect.objects.get(user=self.user)
+        data['colId'] = collect_obj.id
+        # 查询用户收藏的学校id
+        schIdList = []
+        for item in collect_obj.school.all():
+            schIdList.append(item.id)
+        data['schIdList'] = schIdList
         return data
 
 
 # 用户信息序列化器
 class UsersProfileSerializer(serializers.ModelSerializer):
     matUser = MaterialInfoSerializer(many=True)
+    colUser = InfoCollectSerializer(read_only=True)
 
     class Meta:
         model = User
@@ -120,5 +130,4 @@ class UsersProfileSerializer(serializers.ModelSerializer):
 class UserInfoModifySerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','email','mobile','avatar','signature']
-
+        fields = ['username', 'email', 'mobile', 'avatar', 'signature']

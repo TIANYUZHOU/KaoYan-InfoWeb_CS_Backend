@@ -13,16 +13,17 @@ admin.site.index_title = "天宇考研"
 admin.site.register(Major)
 # admin.site.register(UserExtend)
 admin.site.register(Material)
+admin.site.register(Collect)
 
 
-class SchoolMajoy(admin.StackedInline):
+class SchoolMajor(admin.StackedInline):
     model = Major
     # 额外的表数量（用于新增子表数据）
     extra = 1
 
 
 class SchoolAdmin(admin.ModelAdmin):
-    inlines = [SchoolMajoy]
+    inlines = [SchoolMajor]
 
 
 # class UserUserExtend(admin.StackedInline):
