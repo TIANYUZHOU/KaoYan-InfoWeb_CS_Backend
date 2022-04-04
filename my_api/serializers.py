@@ -12,8 +12,8 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# 资料-学校外键序列化器
-class MaterialsSchoolSerializer(serializers.ModelSerializer):
+# 学校外键序列化器
+class ForSchoolSerializer(serializers.ModelSerializer):
     """定义序列化器"""
 
     class Meta:
@@ -21,7 +21,7 @@ class MaterialsSchoolSerializer(serializers.ModelSerializer):
         fields = ['schName']
         extra_kwargs = {  # 修改字段选项
             'schName': {
-                'read_only': True  # 只进行反序列化
+                'read_only': True  # 只进行序列化
             }
         }
 
@@ -33,12 +33,14 @@ class MaterialsUsersProfileSerializer(serializers.ModelSerializer):
         fields = ['username']
         extra_kwargs = {  # 修改字段选项
             'username': {
-                'read_only': True  # 只进行反序列化
+                'read_only': True  # 只进行序列化
             }
         }
 
 
 class MajorSerializer(serializers.ModelSerializer):
+    school = ForSchoolSerializer()
+
     class Meta:
         model = Major
         fields = '__all__'
@@ -61,7 +63,7 @@ class MaterialSerializer(serializers.ModelSerializer):
 
 # 资料查询序列化器
 class MaterialInfoSerializer(serializers.ModelSerializer):
-    school = MaterialsSchoolSerializer()
+    school = ForSchoolSerializer()
     user = MaterialsUsersProfileSerializer()
 
     class Meta:
