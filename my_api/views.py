@@ -36,7 +36,7 @@ class SchoolInfoViewSet(ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend, ProCourseCountFilter)
     # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
     filter_fields = ['id', 'schName', 'location', 'subjection',
-                     'is_985', 'is_211', 'is_firClassU', 'is_firClassS','is_else']
+                     'is_985', 'is_211', 'is_firClassU', 'is_firClassS', 'is_else']
     # search_fields = ['proCourseCount',]
 
 
@@ -46,6 +46,12 @@ class MajorInfoViewSet(ReadOnlyModelViewSet):
 
     # 指定序列化器
     serializer_class = MajorSerializer
+
+    filter_backends = (DjangoFilterBackend,SearchFilter)
+    # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
+    filter_fields = ['id', 'school__schName', 'school__location', 'learnForm']
+
+    search_fields = ('major',)
 
 
 # 资料查询视图
