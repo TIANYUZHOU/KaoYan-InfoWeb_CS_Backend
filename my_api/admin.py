@@ -5,9 +5,9 @@ from django.contrib.auth.admin import UserAdmin
 
 from .models import *
 
-admin.site.site_header = "计算机考研信息管理系统"
-admin.site.site_title = "欢迎进入计算机考研信息管理系统~"
-admin.site.index_title = "天宇考研"
+admin.site.site_header = "『上岸吧』管理系统"
+admin.site.site_title = "欢迎进入『上岸吧』管理系统~"
+admin.site.index_title = "上岸吧"
 
 # admin.site.register(School)
 admin.site.register(Major)

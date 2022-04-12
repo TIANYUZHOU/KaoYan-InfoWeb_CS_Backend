@@ -221,3 +221,68 @@ SIMPLE_JWT = {
 # 修改默认认证后端
 AUTHENTICATION_BACKENDS = ['user.utils.UserNameMobileAuthBackend',
                            ]
+# 隐藏右侧SimpleUI广告链接和使用分析
+SIMPLEUI_HOME_INFO = False
+# SIMPLEUI_ANALYSIS = False
+SIMPLEUI_LOGO = 'https://pic.zty.plus/Logo/back_logo.png'
+SIMPLEUI_DEFAULT_THEME = 'dark.green.css'
+# SIMPLEUI_ICON = {
+#     '仓库信息表': 'fas fa-warehouse',
+#     '入库表': 'fas fa-sign-in-alt',
+#     '出库表': 'fas fa-sign-out-alt'
+# }
+# SIMPLEUI_HOME_PAGE = 'http://127.0.0.1:8000/admin/'
+SIMPLEUI_HOME_TITLE = '作者博客'
+# SIMPLEUI_CONFIG = {
+#     # 'system_keep': False, # 关闭系统菜单
+#     # 'menu_display': ['仓库管理'],
+#     'dynamic': True,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
+#     'menus': [{
+#         'app': 'my_api',
+#         'name': 'API管理',
+#         'icon': 'fas fa-tasks',
+#         'models': [{
+#             'name': '院校表',
+#             'icon': 'fas fa-warehouse',
+#             'url': 'admin/my_api/school/'
+#         }, {
+#             'name': '入库表',
+#             'icon': 'fas fa-sign-in-alt',
+#             'url': 'backend/instock/'
+#         }, {
+#             'name': '出库表',
+#             'icon': 'fas fa-sign-out-alt',
+#             'url': 'backend/outofstock/'
+#         }, {
+#             'name': '货物信息表',
+#             'icon': 'fab fa-product-hunt',
+#             'url': 'backend/product/'
+#         }, {
+#             'name': '工作人员表',
+#             'icon': 'fas fa-male',
+#             'url': 'backend/staff/'
+#         }]
+#     }, {'app': 'auth',
+#         'name': '用户管理',
+#         'icon': 'fas fa-user-shield',
+#         'models': [
+#             {
+#                 'name': '用户',
+#                 'icon': 'fa fa-user',
+#                 'url': 'auth/user/'
+#             },
+#             {
+#                 'name': '用户组',
+#                 'icon': 'fas fa-users-cog',
+#                 'url': 'auth/group/'
+#             }
+#         ]
+#         }]
+# }
+SIMPLEUI_ICON = {
+    'API管理': 'fas fa-tasks',
+    '专业表': 'fas fa-book',
+    '资料表':'fas fa-folder-open',
+    '院校表':'fas fa-university',
+    '用户表':'fas fa-users'
+}

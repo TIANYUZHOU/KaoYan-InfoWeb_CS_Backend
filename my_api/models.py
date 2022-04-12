@@ -135,8 +135,8 @@ class Material(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '用户上传资料表'
-        verbose_name_plural = '用户上传资料表'
+        verbose_name = '资料表'
+        verbose_name_plural = '资料表'
 
 
 # 友情链接表
@@ -163,8 +163,8 @@ class Collect(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '用户收藏表'
-        verbose_name_plural = '用户收藏表'
+        verbose_name = '收藏表'
+        verbose_name_plural = '收藏表'
 # 二级学院表
 # class Institute(models.Model):
 #     insName = models.CharField('院系所', max_length=255)
