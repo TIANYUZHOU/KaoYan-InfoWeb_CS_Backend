@@ -64,8 +64,8 @@ class School(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '院校表'
-        verbose_name_plural = '院校表'
+        verbose_name = '院校'
+        verbose_name_plural = '院校'
 
 
 # 专业表
@@ -86,8 +86,8 @@ class Major(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '专业表'
-        verbose_name_plural = '专业表'
+        verbose_name = '专业'
+        verbose_name_plural = '专业'
 
 
 # 资料表
@@ -135,8 +135,8 @@ class Material(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '资料表'
-        verbose_name_plural = '资料表'
+        verbose_name = '资料'
+        verbose_name_plural = '资料'
 
 
 # 友情链接表
@@ -150,8 +150,8 @@ class Link(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '友情链接表'
-        verbose_name_plural = '友情链接表'
+        verbose_name = '友链'
+        verbose_name_plural = '友链'
 
 
 class Collect(models.Model):
@@ -163,8 +163,10 @@ class Collect(models.Model):
 
     class Meta:
         ordering = ['id']
-        verbose_name = '收藏表'
-        verbose_name_plural = '收藏表'
+        verbose_name = '收藏'
+        verbose_name_plural = '收藏'
+
+
 # 二级学院表
 # class Institute(models.Model):
 #     insName = models.CharField('院系所', max_length=255)
@@ -199,3 +201,16 @@ class Collect(models.Model):
 #     english = models.CharField('英语科目选择', max_length=8, choices=SUBJECT_IN_ENGLISH_CHOICES, default=ENGLISH1)
 #     proCourseCount = models.CharField('专业课科目选择', max_length=8, choices=SUBJECT_IN_PRO_COURSE_COUNT_CHOICES,
 #                                       default=PRO_COURSE_COUNT5)
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, verbose_name='反馈用户', on_delete=models.CASCADE, related_name='feedUser')
+    content = models.TextField('反馈内容', null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = '反馈'
+        verbose_name_plural = '反馈'

@@ -13,5 +13,5 @@ class User(AbstractUser):
 
     class Meta:
         # db_table = 'user_users'   # 数据库表名
-        verbose_name = '用户表'
-        verbose_name_plural = '用户表'
+        verbose_name = '用户'
+        verbose_name_plural = '用户'

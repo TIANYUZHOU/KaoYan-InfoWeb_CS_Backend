@@ -232,7 +232,7 @@ SIMPLEUI_DEFAULT_THEME = 'dark.green.css'
 #     '出库表': 'fas fa-sign-out-alt'
 # }
 # SIMPLEUI_HOME_PAGE = 'http://127.0.0.1:8000/admin/'
-SIMPLEUI_HOME_TITLE = '作者博客'
+# SIMPLEUI_HOME_TITLE = '作者博客'
 # SIMPLEUI_CONFIG = {
 #     # 'system_keep': False, # 关闭系统菜单
 #     # 'menu_display': ['仓库管理'],
@@ -280,9 +280,9 @@ SIMPLEUI_HOME_TITLE = '作者博客'
 #         }]
 # }
 SIMPLEUI_ICON = {
-    'API管理': 'fas fa-tasks',
-    '专业表': 'fas fa-book',
-    '资料表':'fas fa-folder-open',
-    '院校表':'fas fa-university',
-    '用户表':'fas fa-users'
+    '专业': 'fas fa-book',
+    '资料':'fas fa-folder-open',
+    '院校':'fas fa-university',
+    '用户':'fas fa-users',
+    '反馈':'fas fa-comments'
 }
