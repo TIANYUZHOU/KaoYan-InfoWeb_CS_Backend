@@ -6,9 +6,9 @@ from rest_framework.decorators import action
 from django.http import FileResponse
 
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet, GenericViewSet
-from .models import School, Major, Material, Collect
+from .models import School, Major, Material, Collect, Link
 from .serializers import SchoolSerializer, MaterialSerializer, MajorSerializer, MaterialInfoSerializer, \
-    CollectSerializer
+    CollectSerializer, LinkSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.pagination import PageNumberPagination
@@ -140,3 +140,10 @@ class CollectViewSet(GenericViewSet,
     """用户收藏"""
     queryset = Collect.objects.all()
     serializer_class = CollectSerializer
+
+
+class LinkViewSet(GenericViewSet,
+                     mixins.ListModelMixin):
+    """友情链接"""
+    queryset = Link.objects.all()
+    serializer_class = LinkSerializer

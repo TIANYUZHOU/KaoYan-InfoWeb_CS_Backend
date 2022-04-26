@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from user.models import User
-from .models import School, Major, Material, Collect
+from .models import School, Major, Material, Collect, Link
 
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -122,3 +122,11 @@ class CollectSerializer(serializers.ModelSerializer):
         #         'read_only': True  # 只进行序列化
         #     }
         # }
+
+
+# 友情链接序列化器
+class LinkSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Link
+        fields = '__all__'

@@ -14,4 +14,5 @@ router.register('materials', views.MaterialViewSet)
 router.register('majors', views.MajorInfoViewSet)
 router.register('materialInfo', views.MaterialInfoViewSet)
 router.register('collect', views.CollectViewSet)
+router.register('links', views.LinkViewSet)
 urlpatterns += router.urls  # 把生成好的路由拼接到 urlpatterns
