@@ -74,6 +74,7 @@ class Major(models.Model):
     major = models.CharField('专业', max_length=255)
     resDirection = models.CharField('研究方向', max_length=255)
     institute = models.CharField('院系所', max_length=255)
+    admScore = models.CharField('录取分数', blank=True, null=True, max_length=255)
     # institute = models.ForeignKey('Institute',verbose_name='院系所',on_delete=models.DO_NOTHING)
     enrPlan = models.CharField('招生计划', max_length=255)
     examForm = models.CharField('考试方式', max_length=8)
