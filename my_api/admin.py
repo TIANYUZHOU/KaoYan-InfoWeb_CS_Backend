@@ -48,7 +48,7 @@ admin.site.register(Feedback)
 class MajorAdmin(admin.ModelAdmin):
     # 需要显示的字段信息
     list_display = ('id', 'school', 'major', 'resDirection', 'institute')
-    search_fields = ('school__schName', 'major', 'institute')
+    search_fields = ('school__schName', 'major', 'school__location')
     # 设置哪些字段可以点击进入编辑界面，默认是第一个字段
     list_display_links = ('id', 'major')
 
