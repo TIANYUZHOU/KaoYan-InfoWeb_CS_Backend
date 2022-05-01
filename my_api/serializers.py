@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from user.models import User
-from .models import School, Major, Material, Collect, Link
+from .models import School, Major, Material, Collect, Link, Feedback
 
 
 class SchoolSerializer(serializers.ModelSerializer):
@@ -129,4 +129,11 @@ class LinkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Link
+        fields = '__all__'
+
+# 反馈序列化器
+class FeedbackSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Feedback
         fields = '__all__'

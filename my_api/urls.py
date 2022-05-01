@@ -15,4 +15,5 @@ router.register('majors', views.MajorInfoViewSet)
 router.register('materialInfo', views.MaterialInfoViewSet)
 router.register('collect', views.CollectViewSet)
 router.register('links', views.LinkViewSet)
+router.register('feedback', views.FeedbackViewSet)
 urlpatterns += router.urls  # 把生成好的路由拼接到 urlpatterns
