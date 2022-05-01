@@ -12,10 +12,14 @@ admin.site.index_title = "上岸吧"
 # admin.site.register(School)
 # admin.site.register(Major)
 # admin.site.register(UserExtend)
-admin.site.register(Material)
+# admin.site.register(Material)
 admin.site.register(Collect)
-admin.site.register(Link)
-admin.site.register(Feedback)
+
+
+# admin.site.register(Link)
+
+
+# admin.site.register(Feedback)
 
 
 # class SchoolMajor(admin.StackedInline):
@@ -66,3 +70,33 @@ class SchoolAdmin(admin.ModelAdmin):
 
 
 admin.site.register(School, SchoolAdmin)
+
+
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('user', 'content')
+    list_display_links = ('content',)
+
+    list_per_page = 10  # 定义一页为10条数据
+
+
+admin.site.register(Feedback, FeedbackAdmin)
+
+
+class MaterialAdmin(admin.ModelAdmin):
+    list_display = ('user', 'matName', 'school', 'matClass', 'downloads', 'uploadTime')
+    list_display_links = ('matName',)
+
+    list_per_page = 10  # 定义一页为10条数据
+
+
+admin.site.register(Material, MaterialAdmin)
+
+
+class LinkAdmin(admin.ModelAdmin):
+    list_display = ('webTitle', 'url', 'intro')
+    list_display_links = ('webTitle',)
+
+    list_per_page = 10  # 定义一页为10条数据
+
+
+admin.site.register(Link, LinkAdmin)
