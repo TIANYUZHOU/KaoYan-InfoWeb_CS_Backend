@@ -32,6 +32,7 @@ class SchoolInfoViewSet(ReadOnlyModelViewSet):
 
     # 指定序列化器
     serializer_class = SchoolSerializer
+    permission_classes = [IsAuthenticated]
 
     # 过滤器
     filter_backends = (DjangoFilterBackend, ProCourseCountFilter)
@@ -47,6 +48,7 @@ class MajorInfoViewSet(ReadOnlyModelViewSet):
 
     # 指定序列化器
     serializer_class = MajorSerializer
+    permission_classes = [IsAuthenticated]
 
     filter_backends = (DjangoFilterBackend, SearchFilter)
     # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
@@ -59,7 +61,7 @@ class MajorInfoViewSet(ReadOnlyModelViewSet):
 class MaterialInfoViewSet(ReadOnlyModelViewSet):
     queryset = Material.objects.all()
     serializer_class = MaterialInfoSerializer
-
+    # permission_classes = [IsAuthenticated]
     # 过滤器
     filter_backends = (DjangoFilterBackend, SearchFilter)
     # 如果要允许对某些字段进行过滤，可以使用filter_fields属性。
@@ -134,21 +136,21 @@ class CollectViewSet(GenericViewSet,
                      mixins.RetrieveModelMixin,
                      mixins.CreateModelMixin,
                      mixins.UpdateModelMixin,
-                     mixins.DestroyModelMixin,mixins.ListModelMixin):
+                     mixins.DestroyModelMixin, mixins.ListModelMixin):
     """用户收藏"""
     queryset = Collect.objects.all()
     serializer_class = CollectSerializer
 
 
 class LinkViewSet(GenericViewSet,
-                     mixins.ListModelMixin):
+                  mixins.ListModelMixin):
     """友情链接"""
     queryset = Link.objects.all()
     serializer_class = LinkSerializer
 
 
 class FeedbackViewSet(GenericViewSet,
-                     mixins.CreateModelMixin):
+                      mixins.CreateModelMixin):
     """反馈"""
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer

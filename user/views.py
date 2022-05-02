@@ -79,7 +79,7 @@ class UsersProfileViewSet(mixins.RetrieveModelMixin,
     queryset = User.objects.all()
 
     # 只有登录用户才能访问此视图
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     # 指定序列化器
     serializer_class = UsersProfileSerializer

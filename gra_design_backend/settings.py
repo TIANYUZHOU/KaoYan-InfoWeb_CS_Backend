@@ -216,6 +216,8 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
     # token刷新后的有效时间
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    # 更新last_login字段
+    'UPDATE_LAST_LOGIN': True
 }
 
 # 修改默认认证后端
@@ -281,8 +283,8 @@ SIMPLEUI_DEFAULT_THEME = 'dark.green.css'
 # }
 SIMPLEUI_ICON = {
     '专业': 'fas fa-book',
-    '资料':'fas fa-folder-open',
-    '院校':'fas fa-university',
-    '用户':'fas fa-users',
-    '反馈':'fas fa-comments'
+    '资料': 'fas fa-folder-open',
+    '院校': 'fas fa-university',
+    '用户': 'fas fa-users',
+    '反馈': 'fas fa-comments'
 }
