@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from my_api.serializers import MaterialInfoSerializer, InfoCollectSerializer
 from .models import User
-from  my_api.models import Collect
+from my_api.models import Collect
 from django.core.cache import cache
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
@@ -46,10 +46,18 @@ class CreateUserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         del validated_data['sms_code']  # sms_code 不需要存储到数据库
 
+        # print(validated_data)
         password = validated_data.pop('password')  # password明文需要单独处理存储
         user = User(**validated_data)  # 创建Uer模型的对象给对应字段赋值
         user.set_password(password)  # 加密密码再赋值给user的password属性
         user.save()  # 存储到数据库
+
+        # 同时为用户创建收藏夹
+        user_obj = User.objects.get(username=validated_data['username'])
+        print(user_obj)
+        user_id = user_obj.id
+        collect = Collect(user_id=user_id)
+        collect.save()
 
         return user
 
