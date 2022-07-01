@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.views import serve
 from django.urls import path,re_path
 from django.urls import include
 from rest_framework.documentation import include_docs_urls
@@ -26,7 +27,8 @@ urlpatterns = [
     path('api/', include('my_api.urls')),
     path('docs/', include_docs_urls(title='My API title')),
     re_path(r'^',include('verification.urls')),  # 发短信
-    re_path(r'^',include('user.urls'))
+    re_path(r'^',include('user.urls')),
+    path('favicon.ico', serve, {'path': 'images/biao.png'}) # 后台管理图标
 ]
 
 # 主路由中：显性告诉django绑定media_url和media_root

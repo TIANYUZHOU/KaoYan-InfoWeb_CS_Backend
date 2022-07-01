@@ -74,7 +74,7 @@ class Major(models.Model):
     major = models.CharField('专业', max_length=255)
     resDirection = models.CharField('研究方向', max_length=255)
     institute = models.CharField('院系所', max_length=255)
-    admScore = models.CharField('录取分数', blank=True, null=True, max_length=255)
+    admScore = models.CharField('复试分数', blank=True, null=True, max_length=255)
     # institute = models.ForeignKey('Institute',verbose_name='院系所',on_delete=models.DO_NOTHING)
     enrPlan = models.CharField('招生计划', max_length=255)
     examForm = models.CharField('考试方式', max_length=8)
@@ -157,7 +157,7 @@ class Link(models.Model):
 
 class Collect(models.Model):
     user = models.OneToOneField(User, verbose_name='收藏用户', on_delete=models.DO_NOTHING, related_name='colUser')
-    school = models.ManyToManyField('School', null=True, blank=True, verbose_name='院校名称', related_name='colSchool')
+    school = models.ManyToManyField('School', blank=True, verbose_name='院校名称', related_name='colSchool')
 
     def __str__(self):
         return self.user.username
