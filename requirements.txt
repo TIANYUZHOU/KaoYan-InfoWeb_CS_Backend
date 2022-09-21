@@ -1,0 +1,6 @@
+PyMySQL==1.0.2
+tencentcloud_sdk_python==3.0.603
+django_filter==21.1
+Django==4.0.3
+djangorestframework_simplejwt==5.1.0
+djangorestframework==3.13.1
